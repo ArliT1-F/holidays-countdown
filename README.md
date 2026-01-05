@@ -1,3 +1,5 @@
+**WARNING**: This is still a work in progress and clearly not yet finished. If you are a web designer and the layout of this website cringes you... im sorry, I'm still trying to fix some stuff.
+
 # 🎄 Holiday Countdown Timer 🎆
 
 A beautiful, interactive countdown timer for Christmas and New Year with stunning animations and a dynamic landscape that changes based on your local time.
