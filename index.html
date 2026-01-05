@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Beautiful countdown timer for Christmas and New Year with festive animations">
+    <meta name="theme-color" content="#1a472a">
+    <title>🎄 Holiday Countdown 🎆</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="christmas-theme">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner">🎄</div>
+        <div class="loading-text">Loading Holiday Magic...</div>
+        <div class="loading-bar">
+            <div class="loading-bar-fill"></div>
+        </div>
+    </div>
+
+    <!-- ==================== ANIMATED LANDSCAPE BACKGROUND ==================== -->
+    <div class="landscape-container" id="landscapeContainer">
+        <!-- Sky Layer -->
+        <div class="sky" id="sky">
+            <!-- Stars (visible at night) -->
+            <div class="stars-layer" id="starsLayer"></div>
+            
+            <!-- Northern Lights (night effect) -->
+            <div class="northern-lights" id="northernLights">
+                <div class="aurora aurora-1"></div>
+                <div class="aurora aurora-2"></div>
+                <div class="aurora aurora-3"></div>
+            </div>
+            
+            <!-- Sun -->
+            <div class="celestial-body sun" id="sun">
+                <div class="sun-rays"></div>
+            </div>
+            
+            <!-- Moon -->
+            <div class="celestial-body moon" id="moon">
+                <div class="moon-crater crater-1"></div>
+                <div class="moon-crater crater-2"></div>
+                <div class="moon-crater crater-3"></div>
+            </div>
+            
+            <!-- Clouds -->
+            <div class="clouds-layer" id="cloudsLayer"></div>
+            
+            <!-- Flying Elements Container -->
+            <div class="flying-elements" id="flyingElements">
+                <!-- Santa Sleigh (Dec 25 - Jan 2) -->
+                <div class="santa-sleigh" id="santaSleigh">
+                    <div class="sleigh-body">🛷</div>
+                    <div class="santa">🎅</div>
+                    <div class="reindeer-team">
+                        <span class="reindeer r1">🦌</span>
+                        <span class="reindeer r2">🦌</span>
+                        <span class="reindeer r3">🦌</span>
+                        <span class="reindeer r4">🦌</span>
+                    </div>
+                    <div class="magic-trail" id="magicTrail"></div>
+                </div>
+                
+                <!-- Birds -->
+                <div class="birds-container" id="birdsContainer"></div>
+                
+                <!-- Shooting Stars -->
+                <div class="shooting-stars-container" id="shootingStarsContainer"></div>
+            </div>
+        </div>
+        
+        <!-- Snowfall Layer -->
+        <div class="snowfall-layer" id="snowfallLayer"></div>
+        
+        <!-- Background Mountains (furthest) -->
+        <div class="mountain-layer mountains-back" id="mountainsBack">
+            <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path class="mountain-path mountain-back-1" d="M0,320 L0,200 Q100,120 200,180 Q300,100 400,160 Q500,80 600,140 Q700,60 800,120 Q900,40 1000,100 Q1100,60 1200,120 Q1300,80 1400,140 L1440,120 L1440,320 Z"></path>
+            </svg>
+            <div class="mountain-snow-caps back-caps"></div>
+        </div>
+        
+        <!-- Middle Mountains -->
+        <div class="mountain-layer mountains-mid" id="mountainsMid">
+            <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path class="mountain-path mountain-mid-1" d="M0,320 L0,220 Q80,180 160,200 Q240,140 320,180 Q400,100 480,160 Q560,120 640,150 Q720,80 800,140 Q880,100 960,130 Q1040,90 1120,140 Q1200,110 1280,150 Q1360,120 1440,160 L1440,320 Z"></path>
+            </svg>
+            <div class="mountain-snow-caps mid-caps"></div>
+        </div>
+        
+        <!-- Foreground Mountains (closest) -->
+        <div class="mountain-layer mountains-front" id="mountainsFront">
+            <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path class="mountain-path mountain-front-1" d="M0,320 L0,260 Q60,230 120,250 Q180,200 240,230 Q300,180 360,220 Q420,190 480,210 Q540,170 600,200 Q660,220 720,190 Q780,160 840,200 Q900,180 960,210 Q1020,190 1080,220 Q1140,200 1200,230 Q1260,210 1320,240 Q1380,220 1440,250 L1440,320 Z"></path>
+            </svg>
+            <div class="mountain-snow-caps front-caps"></div>
+            
+            <!-- Pine Trees on Mountains -->
+            <div class="trees-container" id="treesContainer"></div>
+        </div>
+        
+        <!-- Ground Layer -->
+        <div class="ground-layer" id="groundLayer">
+            <!-- Snowy Ground -->
+            <div class="snowy-ground"></div>
+            
+            <!-- Ground Decorations -->
+            <div class="ground-decorations" id="groundDecorations">
+                <!-- Snowmen -->
+                <div class="snowman snowman-1">
+                    <div class="snowman-body">⛄</div>
+                </div>
+                <div class="snowman snowman-2">
+                    <div class="snowman-body">☃️</div>
+                </div>
+                
+                <!-- Cabin -->
+                <div class="cabin" id="cabin">
+                    <div class="cabin-body">🏠</div>
+                    <div class="cabin-smoke" id="cabinSmoke"></div>
+                    <div class="cabin-lights"></div>
+                </div>
+                
+                <!-- Christmas Tree -->
+                <div class="ground-tree" id="groundTree">
+                    <div class="tree-body">🎄</div>
+                    <div class="tree-star">⭐</div>
+                </div>
+                
+                <!-- Deer on ground -->
+                <div class="ground-deer" id="groundDeer"></div>
+                
+                <!-- Rabbits -->
+                <div class="ground-animals" id="groundAnimals"></div>
+            </div>
+            
+            <!-- Frozen Lake -->
+            <div class="frozen-lake" id="frozenLake">
+                <div class="ice-reflection"></div>
+                <div class="skating-figures" id="skatingFigures"></div>
+            </div>
+        </div>
+        
+        <!-- Foreground Snow Mounds -->
+        <div class="snow-mounds">
+            <div class="snow-mound mound-1"></div>
+            <div class="snow-mound mound-2"></div>
+            <div class="snow-mound mound-3"></div>
+        </div>
+        
+        <!-- Fog/Mist Layer -->
+        <div class="fog-layer" id="fogLayer">
+            <div class="fog fog-1"></div>
+            <div class="fog fog-2"></div>
+            <div class="fog fog-3"></div>
+        </div>
+    </div>
+
+    <!-- ==================== DECORATIVE ELEMENTS ==================== -->
+    <!-- Christmas Lights String -->
+    <div class="lights-string" id="lightsString">
+        <svg class="lights-wire" viewBox="0 0 100 10" preserveAspectRatio="none">
+            <path d="M0,0 Q25,10 50,5 Q75,0 100,8" stroke="#333" fill="none" stroke-width="0.5"/>
+        </svg>
+        <div class="lights-container" id="lightsContainer"></div>
+    </div>
+
+    <!-- Corner Decorations -->
+    <div class="corner-decoration corner-top-left">
+        <div class="holly">🎄</div>
+        <div class="ornament">🔴</div>
+        <div class="ornament">🟡</div>
+    </div>
+    <div class="corner-decoration corner-top-right">
+        <div class="holly">🎄</div>
+        <div class="ornament">🔵</div>
+        <div class="ornament">🟢</div>
+    </div>
+
+    <!-- Hanging Ornaments -->
+    <div class="hanging-ornaments" id="hangingOrnaments"></div>
+
+    <!-- ==================== TOAST NOTIFICATIONS ==================== -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ==================== MODALS ==================== -->
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="settingsTitle">⚙️ Settings</h2>
+                <button class="modal-close" onclick="closeModal('settingsModal')" aria-label="Close settings">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <h3 class="setting-group-title">🎨 Visual Effects</h3>
+                    <div class="setting-row">
+                        <span class="setting-text">❄️ Snowfall</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="snowToggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-text">💡 Christmas Lights</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="lightsToggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-text">🌌 Northern Lights</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="auroraToggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-text">🦌 Flying Animals</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="animalsToggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-text">🖱️ Click Effects</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="clickToggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-text">🌫️ Fog Effect</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="fogToggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <h3 class="setting-group-title">⏱️ Countdown</h3>
+                    <div class="setting-row">
+                        <span class="setting-text">Show Milliseconds</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="msToggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-text">Show Additional Stats</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="statsToggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <h3 class="setting-group-title">🔊 Sound</h3>
+                    <div class="setting-row">
+                        <span class="setting-text">Sound Effects</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="soundToggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-text">🎵 Ambient Music</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="musicToggleSwitch">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <h3 class="setting-group-title">♿ Accessibility</h3>
+                    <div class="setting-row">
+                        <span class="setting-text">Reduce Motion</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="reduceMotionToggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span class="setting-text">High Contrast</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="highContrastToggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="resetSettings()">Reset to Default</button>
+                <button class="btn btn-primary" onclick="closeModal('settingsModal')">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div class="modal-overlay" id="shareModal" role="dialog" aria-modal="true" aria-labelledby="shareTitle">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="shareTitle">📤 Share the Joy!</h2>
+                <button class="modal-close" onclick="closeModal('shareModal')" aria-label="Close share dialog">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="share-description">Share this festive countdown with friends and family!</p>
+                <div class="share-preview">
+                    <div class="share-preview-content">
+                        <span class="share-emoji">🎄</span>
+                        <span class="share-text" id="sharePreviewText">X days until Christmas!</span>
+                    </div>
+                </div>
+                <div class="share-buttons">
+                    <button class="share-button twitter" onclick="shareTwitter()" title="Share on Twitter/X">
+                        <span class="share-icon">𝕏</span>
+                        <span class="share-label">Twitter</span>
+                    </button>
+                    <button class="share-button facebook" onclick="shareFacebook()" title="Share on Facebook">
+                        <span class="share-icon">f</span>
+                        <span class="share-label">Facebook</span>
+                    </button>
+                    <button class="share-button whatsapp" onclick="shareWhatsApp()" title="Share on WhatsApp">
+                        <span class="share-icon">💬</span>
+                        <span class="share-label">WhatsApp</span>
+                    </button>
+                    <button class="share-button telegram" onclick="shareTelegram()" title="Share on Telegram">
+                        <span class="share-icon">✈️</span>
+                        <span class="share-label">Telegram</span>
+                    </button>
+                    <button class="share-button email" onclick="shareEmail()" title="Share via Email">
+                        <span class="share-icon">📧</span>
+                        <span class="share-label">Email</span>
+                    </button>
+                    <button class="share-button copy" onclick="copyLink()" title="Copy Link">
+                        <span class="share-icon">📋</span>
+                        <span class="share-label">Copy</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Modal -->
+    <div class="modal-overlay" id="infoModal" role="dialog" aria-modal="true" aria-labelledby="infoTitle">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h2 class="modal-title" id="infoTitle">ℹ️ About & Shortcuts</h2>
+                <button class="modal-close" onclick="closeModal('infoModal')" aria-label="Close info">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="info-section">
+                    <h3>⌨️ Keyboard Shortcuts</h3>
+                    <div class="shortcuts-grid">
+                        <div class="shortcut-item"><kbd>M</kbd> Toggle Music</div>
+                        <div class="shortcut-item"><kbd>S</kbd> Open Settings</div>
+                        <div class="shortcut-item"><kbd>F</kbd> Fullscreen</div>
+                        <div class="shortcut-item"><kbd>C</kbd> Christmas Mode</div>
+                        <div class="shortcut-item"><kbd>N</kbd> New Year Mode</div>
+                        <div class="shortcut-item"><kbd>?</kbd> Show This Help</div>
+                        <div class="shortcut-item"><kbd>Esc</kbd> Close Modals</div>
+                        <div class="shortcut-item"><kbd>Space</kbd> Confetti!</div>
+                    </div>
+                </div>
+                <div class="info-section">
+                    <h3>✨ Features</h3>
+                    <ul class="features-list">
+                        <li>🌄 Dynamic sky that changes with your local time</li>
+                        <li>🦌 Animated wildlife and flying creatures</li>
+                        <li>🎅 Santa flies across the sky (Dec 25 - Jan 2)</li>
+                        <li>🌌 Northern lights at night</li>
+                        <li>⛄ Interactive landscape with cabin, trees, and more</li>
+                        <li>🗓️ Advent Calendar (December only)</li>
+                        <li>🎁 Personal wish list</li>
+                        <li>📊 Detailed countdown statistics</li>
+                    </ul>
+                </div>
+                <div class="info-section">
+                    <h3>🕐 Time Information</h3>
+                    <div class="time-info">
+                        <p>Your timezone: <strong id="infoTimezone"></strong></p>
+                        <p>Current time: <strong id="infoCurrentTime"></strong></p>
+                        <p>Sky phase: <strong id="infoSkyPhase"></strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <div class="main-container" id="mainContainer">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="header-btn" id="settingsBtn" onclick="openModal('settingsModal')" aria-label="Open settings" title="Settings (S)">
+                    <span class="btn-icon">⚙️</span>
+                </button>
+                <button class="header-btn" id="infoBtn" onclick="openModal('infoModal')" aria-label="Show info" title="Help (?)">
+                    <span class="btn-icon">❓</span>
+                </button>
+            </div>
+            
+            <div class="header-center">
+                <div class="year-display" id="yearDisplay" onclick="createConfetti(event)" title="Click for confetti!">
+                    2024
+                </div>
+                <div class="time-of-day-indicator" id="timeOfDayIndicator">
+                    <span class="tod-icon" id="todIcon">☀️</span>
+                    <span class="tod-text" id="todText">Day</span>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <button class="header-btn" id="fullscreenBtn" onclick="toggleFullscreen()" aria-label="Toggle fullscreen" title="Fullscreen (F)">
+                    <span class="btn-icon">⛶</span>
+                </button>
+                <button class="header-btn" id="shareBtn" onclick="openModal('shareModal')" aria-label="Share" title="Share">
+                    <span class="btn-icon">📤</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Holiday Switcher -->
+        <nav class="holiday-switcher" role="tablist" aria-label="Holiday selection">
+            <button class="holiday-btn christmas active" 
+                    onclick="switchHoliday('christmas')" 
+                    role="tab" 
+                    aria-selected="true" 
+                    aria-controls="countdown-panel"
+                    id="christmas-tab">
+                <span class="btn-emoji">🎄</span>
+                <span class="btn-text">Christmas</span>
+            </button>
+            <button class="holiday-btn newyear" 
+                    onclick="switchHoliday('newyear')" 
+                    role="tab" 
+                    aria-selected="false" 
+                    aria-controls="countdown-panel"
+                    id="newyear-tab">
+                <span class="btn-emoji">🎆</span>
+                <span class="btn-text">New Year</span>
+            </button>
+        </nav>
+
+        <!-- Holiday Title -->
+        <h1 class="holiday-title" id="holidayTitle">
+            <span class="title-emoji left-emoji">🎄</span>
+            <span class="title-text">Countdown to Christmas</span>
+            <span class="title-emoji right-emoji">🎅</span>
+        </h1>
+
+        <!-- Status Info -->
+        <div class="status-info">
+            <div class="timezone-display">
+                <span class="label">📍 Your timezone:</span>
+                <span class="value" id="timezone">Detecting...</span>
+            </div>
+            <div class="local-time-display">
+                <span class="current-time-small" id="currentTimeSmall"></span>
+            </div>
+        </div>
+
+        <!-- Main Countdown Panel -->
+        <main class="countdown-panel" id="countdown-panel" role="tabpanel" aria-labelledby="christmas-tab">
+            
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <div class="progress-header">
+                    <span class="progress-label" id="progressLabel">Year Progress</span>
+                    <span class="progress-percent" id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-glow"></div>
+                    </div>
+                </div>
+                <div class="progress-markers">
+                    <span class="marker">Jan</span>
+                    <span class="marker">Apr</span>
+                    <span class="marker">Jul</span>
+                    <span class="marker">Oct</span>
+                    <span class="marker">Dec</span>
+                </div>
+            </div>
+
+            <!-- Countdown Container -->
+            <div class="countdown-container" id="countdownContainer" role="timer" aria-live="polite" aria-atomic="true">
+                <div class="countdown-row" data-unit="days">
+                    <div class="time-block">
+                        <div class="time-value-wrapper">
+                            <span class="time-value" id="days" aria-label="Days remaining">00</span>
+                            <span class="time-value-shadow" aria-hidden="true">00</span>
+                        </div>
+                        <span class="time-label">Days</span>
+                    </div>
+                </div>
+                
+                <div class="countdown-separator"><span>:</span></div>
+                
+                <div class="countdown-row" data-unit="hours">
+                    <div class="time-block">
+                        <div class="time-value-wrapper">
+                            <span class="time-value" id="hours" aria-label="Hours remaining">00</span>
+                            <span class="time-value-shadow" aria-hidden="true">00</span>
+                        </div>
+                        <span class="time-label">Hours</span>
+                    </div>
+                </div>
+                
+                <div class="countdown-separator"><span>:</span></div>
+                
+                <div class="countdown-row" data-unit="minutes">
+                    <div class="time-block">
+                        <div class="time-value-wrapper">
+                            <span class="time-value" id="minutes" aria-label="Minutes remaining">00</span>
+                            <span class="time-value-shadow" aria-hidden="true">00</span>
+                        </div>
+                        <span class="time-label">Minutes</span>
+                    </div>
+                </div>
+                
+                <div class="countdown-separator"><span>:</span></div>
+                
+                <div class="countdown-row" data-unit="seconds">
+                    <div class="time-block">
+                        <div class="time-value-wrapper">
+                            <span class="time-value" id="seconds" aria-label="Seconds remaining">00</span>
+                            <span class="time-value-shadow" aria-hidden="true">00</span>
+                        </div>
+                        <span class="time-label">Seconds</span>
+                    </div>
+                </div>
+                
+                <div class="countdown-separator ms-separator" id="msSeparator"><span>.</span></div>
+                
+                <div class="countdown-row milliseconds" id="msRow" data-unit="milliseconds">
+                    <div class="time-block">
+                        <div class="time-value-wrapper">
+                            <span class="time-value" id="milliseconds" aria-label="Milliseconds remaining">000</span>
+                        </div>
+                        <span class="time-label">MS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Celebration Message (Hidden by default) -->
+            <div class="celebration" id="celebration" role="alert" aria-live="assertive">
+                <div class="celebration-content">
+                    <div class="celebration-emojis">
+                        <span>🎉</span><span>🎊</span><span>✨</span><span>🎁</span><span>⭐</span>
+                    </div>
+                    <h1 class="celebration-title" id="celebrationTitle">🎄 Merry Christmas! 🎄</h1>
+                    <p class="celebration-subtitle" id="celebrationSubtitle">Wishing you joy, peace, and happiness!</p>
+                    <div class="celebration-animation">
+                        <div class="confetti-cannon left"></div>
+                        <div class="confetti-cannon right"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Stats -->
+            <div class="stats-container" id="statsContainer">
+                <div class="stat-card" data-stat="hours">
+                    <div class="stat-icon">⏰</div>
+                    <div class="stat-value" id="totalHours">0</div>
+                    <div class="stat-label">Total Hours</div>
+                </div>
+                <div class="stat-card" data-stat="minutes">
+                    <div class="stat-icon">⏱️</div>
+                    <div class="stat-value" id="totalMinutes">0</div>
+                    <div class="stat-label">Total Minutes</div>
+                </div>
+                <div class="stat-card" data-stat="seconds">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-value" id="totalSeconds">0</div>
+                    <div class="stat-label">Total Seconds</div>
+                </div>
+                <div class="stat-card" data-stat="sleeps">
+                    <div class="stat-icon">😴</div>
+                    <div class="stat-value" id="sleeps">0</div>
+                    <div class="stat-label">Sleeps Left</div>
+                </div>
+                <div class="stat-card" data-stat="weeks">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-value" id="weeks">0</div>
+                    <div class="stat-label">Weeks</div>
+                </div>
+                <div class="stat-card" data-stat="weekends">
+                    <div class="stat-icon">🎉</div>
+                    <div class="stat-value" id="weekends">0</div>
+                    <div class="stat-label">Weekends</div>
+                </div>
+            </div>
+
+            <!-- Current Time Display -->
+            <div class="current-time-display">
+                <div class="current-time-main" id="currentTime">00:00:00</div>
+                <div class="current-date" id="currentDate">Loading...</div>
+            </div>
+
+        </main>
+
+        <!-- Fun Fact Section -->
+        <section class="fun-fact-section" aria-labelledby="funFactTitle">
+            <div class="fun-fact-card">
+                <div class="fun-fact-header">
+                    <h3 class="fun-fact-title" id="funFactTitle">✨ Did You Know?</h3>
+                    <div class="fun-fact-counter">
+                        <span id="factCurrent">1</span> / <span id="factTotal">10</span>
+                    </div>
+                </div>
+                <p class="fun-fact-text" id="funFact">Loading fun fact...</p>
+                <div class="fun-fact-nav">
+                    <button class="fact-nav-btn" onclick="prevFact()" aria-label="Previous fact">
+                        <span>◀</span>
+                    </button>
+                    <div class="fact-indicators" id="factIndicators"></div>
+                    <button class="fact-nav-btn" onclick="nextFact()" aria-label="Next fact">
+                        <span>▶</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advent Calendar (Christmas Only) -->
+        <section class="advent-section" id="adventSection" aria-labelledby="adventTitle">
+            <div class="advent-card">
+                <h3 class="advent-title" id="adventTitle">🗓️ Advent Calendar</h3>
+                <p class="advent-subtitle">Open a door each day in December!</p>
+                <div class="advent-grid" id="adventGrid"></div>
+                <div class="advent-progress">
+                    <span id="adventOpened">0</span> / 24 doors opened
+                </div>
+            </div>
+        </section>
+
+        <!-- Wish List Section -->
+        <section class="wishes-section" id="wishesSection" aria-labelledby="wishesTitle">
+            <div class="wishes-card">
+                <h3 class="wishes-title" id="wishesTitle">🎁 My Holiday Wish List</h3>
+                <form class="wish-form" id="wishForm" onsubmit="addWish(event)">
+                    <div class="wish-input-wrapper">
+                        <input type="text" 
+                               class="wish-input" 
+                               id="wishInput" 
+                               placeholder="Type your wish here..." 
+                               maxlength="100"
+                               autocomplete="off"
+                               aria-label="Enter your wish">
+                        <span class="wish-char-count"><span id="wishCharCount">0</span>/100</span>
+                    </div>
+                    <button type="submit" class="wish-btn" aria-label="Add wish">
+                        <span>Add</span>
+                        <span class="btn-emoji">✨</span>
+                    </button>
+                </form>
+                <div class="wish-list" id="wishList" role="list"></div>
+                <div class="wishes-footer">
+                    <span class="wish-count"><span id="wishCount">0</span>/10 wishes</span>
+                    <button class="clear-wishes-btn" onclick="clearAllWishes()" aria-label="Clear all wishes">
+                        Clear All
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-text">Made with ❤️ and holiday spirit</p>
+                <p class="footer-shortcuts">
+                    <kbd>?</kbd> for keyboard shortcuts
+                </p>
+            </div>
+            <div class="footer-decoration">
+                <span>🎄</span>
+                <span>⭐</span>
+                <span>🎁</span>
+                <span>❄️</span>
+                <span>☃️</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ==================== MUSIC PLAYER ==================== -->
+    <div class="music-player" id="musicPlayer">
+        <div class="music-visualizer" id="musicVisualizer">
+            <div class="viz-bar"></div>
+            <div class="viz-bar"></div>
+            <div class="viz-bar"></div>
+            <div class="viz-bar"></div>
+            <div class="viz-bar"></div>
+        </div>
+        <input type="range" 
+               class="volume-slider" 
+               id="volumeSlider" 
+               min="0" 
+               max="100" 
+               value="50" 
+               aria-label="Volume control"
+               title="Volume">
+        <button class="music-toggle" id="musicToggle" aria-label="Toggle music" title="Toggle Music (M)">
+            <span class="music-icon" id="musicIcon">🔇</span>
+        </button>
+    </div>
+
+    <!-- ==================== QUICK ACTIONS (Mobile) ==================== -->
+    <div class="quick-actions" id="quickActions">
+        <button class="quick-action-btn" onclick="switchHoliday('christmas')" aria-label="Christmas">🎄</button>
+        <button class="quick-action-btn" onclick="switchHoliday('newyear')" aria-label="New Year">🎆</button>
+        <button class="quick-action-btn" onclick="createConfetti(event)" aria-label="Confetti">🎊</button>
+    </div>
+
+    <!-- ==================== SCREEN READER ANNOUNCEMENTS ==================== -->
+    <div class="sr-only" role="status" aria-live="polite" id="srAnnounce"></div>
+
+<audio id="christmasMusic" loop preload="auto">
+    <source src="assets/audio/christmas-ambient.mp3" type="audio/mpeg">
+    <source src="assets/audio/christmas-ambient.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="newyearMusic" loop preload="auto">
+    <source src="assets/audio/newyear-ambient.mp3" type="audio/mpeg">
+    <source src="assets/audio/newyear-ambient.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+</audio>
+
+<audio id="clickSound" preload="auto">
+    <source src="assets/audio/click-sound.mp3" type="audio/mpeg">
+</audio>    
+    
+    <script src="script.js"></script>
+</body>
+</html>
